@@ -1,0 +1,61 @@
+﻿@model IEnumerable<examen_pf.Models.Account>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Acount</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+
+<h1>Index</h1>
+ @if (Model != null && Model.Any()) // Vérification de nullité et de non-vide
+{
+    <table id="example1" class="table table-bordered table-striped">
+
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Username)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Password)
+                </th>
+                
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Password)
+                    </td>
+                    
+                    <td>
+                        |
+                                <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-eye"></i>Details</a> |
+                        
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No data available.</p>
+}
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js"></script>
+}
+</div>
+</div>

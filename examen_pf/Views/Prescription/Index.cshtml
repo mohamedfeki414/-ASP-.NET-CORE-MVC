@@ -1,0 +1,76 @@
+﻿@model IEnumerable<examen_pf.Models.Prescription>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Prescription List</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        
+        
+
+<p>
+    <a asp-action="Create">+Add New Prescription </a>
+</p>
+    @if (Model != null && Model.Any()) // Vérification de nullité et de non-vide
+    {
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Prescription ID
+                    </th>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        PahrmacistId
+                    </th>
+                    <th>
+                        PatientId
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Pharmacist.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Patient.Id)
+                        </td>
+                        <td>
+                                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil"></i>Edit</a> |
+                                <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-eye"></i>Details</a> |
+                                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash"></i>Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No data available.</p>
+    }
+    @section Scripts {
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js"></script>
+    }
+</div>
+</div>
